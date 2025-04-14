@@ -1,0 +1,38 @@
+# Node modules and CRA build
+frontend/node_modules/
+frontend/build/
+
+# Python virtual environment
+backend/venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Model files - keep only necessary ones
+# ✅ Keep: label_encoder.pkl, tokenizer.json, model.safetensors, config.json, etc.
+# ❌ Ignore large results folder & unnecessary zip/metadata
+backend/app/model/results/
+backend/app/model/results.zip
+backend/app/model/__results__files/
+backend/app/model/sentiment_model/
+backend/app/model/*__huggingface_repo__*
+# Exclude large files we will upload model files to the Hugging Face Model Hub
+# Hugging Face will host your model for free, and FastAPI downloads it on server start.
+backend/app/model/model.safetensors
+backend/venv/
+
+# Optional: ignore extra configs if not needed in code
+# backend/app/model/*_config.json
+
+# Ignore large/extra .pkl files not used by app
+# Keep label_encoder.pkl (used in code!)
+# *.pkl  <-- ❌ Don't use this blanket rule if you're using a .pkl
+
+# VSCode & OS junk
+.vscode/
+.DS_Store
+
+# Env files
+.env
+.env.*
