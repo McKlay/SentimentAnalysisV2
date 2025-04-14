@@ -23,15 +23,15 @@ app.add_middleware(
 # Set device (GPU if available)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Load tokenizer and model from directory with model.safetensors
-MODEL_DIR = "app/model"
-tokenizer = BertTokenizer.from_pretrained(MODEL_DIR)
-model = BertForSequenceClassification.from_pretrained(MODEL_DIR)
+# Load tokenizer and model from Hugging Face Hub with model.safetensors
+MODEL_NAME = "McKlay/sentiment-analysis-v2"
+tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
+model = BertForSequenceClassification.from_pretrained(MODEL_NAME, from_safetensors=True)
 model.to(device)
 model.eval()
 
 # Load label encoder (e.g. ["Negative", "Neutral", "Positive"])
-with open(os.path.join(MODEL_DIR, "label_encoder.pkl"), "rb") as f:
+with open(os.path.join(MODEL_NAME, "label_encoder.pkl"), "rb") as f:
     label_encoder = pickle.load(f)
 
 # Request schema
