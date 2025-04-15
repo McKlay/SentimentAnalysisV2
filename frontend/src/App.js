@@ -27,9 +27,8 @@ function App() {
     setSentiment(null);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/predict', {
-        text: comment
-      });
+      const BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
+      const response = await axios.post(`${BASE_URL}/predict`, { text: comment });
 
       if (response?.data?.sentiment) {
         const label = response.data.sentiment.toUpperCase();
