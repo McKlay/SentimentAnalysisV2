@@ -6,6 +6,7 @@ import torch
 import pickle
 import os
 from torch.nn import functional as F
+from huggingface_hub import hf_hub_download
 
 # Initialize FastAPI
 app = FastAPI()
@@ -31,7 +32,8 @@ model.to(device)
 model.eval()
 
 # Load label encoder (e.g. ["Negative", "Neutral", "Positive"])
-with open(os.path.join(MODEL_NAME, "label_encoder.pkl"), "rb") as f:
+encoder_path = hf_hub_download(repo_id=MODEL_NAME, filename="label_encoder.pkl")
+with open(encoder_path, "rb") as f:
     label_encoder = pickle.load(f)
 
 # Request schema
