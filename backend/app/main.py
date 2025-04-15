@@ -27,7 +27,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Load tokenizer and model from Hugging Face Hub with model.safetensors
 MODEL_NAME = "McKlay/sentiment-analysis-v2"
 tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
-model = BertForSequenceClassification.from_pretrained(MODEL_NAME, from_safetensors=True)
+model = BertForSequenceClassification.from_pretrained(MODEL_NAME)
 model.to(device)
 model.eval()
 
