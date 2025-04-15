@@ -1,10 +1,10 @@
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-ChartJS.register(ArcElement, Tooltip, Legend);
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 function App() {
   const [comment, setComment] = useState('');
