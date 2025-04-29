@@ -52,8 +52,9 @@ The backend will soon load the model using:
 from_pretrained("ClayMark/sentiment-analysis-v2")
 
 🌍 Online Deployment
-🔄 Frontend: To be deployed on Vercel
-
+🔄 Frontend: Vercel
+## Try it Online: ##
+- Deployed on Vercel: [`McKlay/sentiment-analysis-v2`](https://sentiment-analysis-v2.vercel.app/)
 ⚙️ Backend: To be deployed on Railway
 
 📌 To-Do
