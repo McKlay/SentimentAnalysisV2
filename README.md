@@ -1,11 +1,11 @@
-# 🧠 Sentiment Analysis V2
+# Sentiment Analysis V2
 
 A full-stack sentiment analysis web application powered by BERT transformers.
 
 Built with:
-- ⚙️ **FastAPI** backend for serving predictions
-- ⚛️ **React** frontend with interactive UI
-- 🤗 **Transformers (BERT)** for natural language understanding
+- **FastAPI** backend for serving predictions
+- **React** frontend with interactive UI
+- **Transformers (BERT)** for natural language understanding
 
 ---
 
@@ -26,7 +26,7 @@ Built with:
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### 🔧 Backend (FastAPI)
 
@@ -36,6 +36,7 @@ python -m venv venv
 venv\Scripts\activate          # On Windows
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
 
 Visit the docs at: http://localhost:8000/docs
 
@@ -45,34 +46,22 @@ npm install
 npm start
 App runs at: http://localhost:3000
 
-🧠 Model Deployment (Coming Soon)
+Model Deployment (Coming Soon)
 The BERT model (model.safetensors) will be hosted on 🤗 Hugging Face Hub.
 The backend will soon load the model using:
 
 from_pretrained("ClayMark/sentiment-analysis-v2")
 
-🌍 Online Deployment
+## Online Deployment
 🔄 Frontend: Vercel
-## Try it Online: ##
+⚙️ Backend: Railway (But model is hosted in huggingface due to large size)
+
+## Try it Online:
 - Deployed on Vercel: [`McKlay/sentiment-analysis-v2`](https://sentiment-analysis-v2.vercel.app/)
-⚙️ Backend: To be deployed on Railway
 
-📌 To-Do
- Push clean repo to GitHub ✅
-
- Upload model to Hugging Face
-
- Update backend to load from Hugging Face Hub
-
- Deploy backend to Railway
-
- Deploy frontend to Vercel
-
- Add screenshots & live demo
-
-✨ Author
+### Author
 Clay Mark Sarte
-📬 GitHub: McKlay
+GitHub: McKlay
 
 📜 License
 MIT License
