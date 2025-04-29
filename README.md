@@ -10,17 +10,18 @@ Built with:
 
 ## 📂 Project Structure
     1_SentimentAnalysisV2/ 
-        │ ├── backend/ # FastAPI app + ML model loading 
-            │ ├── app/ 
-            │ │ ├── main.py # API endpoints 
-            │ │ └── model/ # Model files (except large ones) 
-            │ └── requirements.txt 
+          ├── backend/ # FastAPI app + ML model loading 
+              ├── app/ 
+                ├── main.py # API endpoints 
+                └── model/ # Model files (except large ones) 
+                └── requirements.txt 
             
-        │ ├── frontend/ # React app 
-        │ ├── public/ 
-        │ ├── src/ 
-        │ ├── package.json 
-        │ └── ... │ └── .gitignore # Clean excludes (safetensors, venv, etc.)
+          ├── frontend/ # React app 
+              ├── public/ 
+              ├── src/ 
+              ├── package.json 
+              └── ... 
+              └── .gitignore # Clean excludes (safetensors, venv, etc.)
 
 
 ---
