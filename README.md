@@ -6,7 +6,6 @@ Built with:
 - **FastAPI** backend for serving predictions
 - **React** frontend with interactive UI
 - **Transformers (BERT)** for natural language understanding
-
 ---
 
 ## 📂 Project Structure
@@ -28,16 +27,13 @@ Built with:
 
 ## Setup Instructions
 
-### 🔧 Backend (FastAPI)
+### Backend (FastAPI)
 
-```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate          # On Windows
+venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-```
-
 Visit the docs at: http://localhost:8000/docs
 
 🌐 Frontend (React)
@@ -49,12 +45,11 @@ App runs at: http://localhost:3000
 Model Deployment (Coming Soon)
 The BERT model (model.safetensors) will be hosted on 🤗 Hugging Face Hub.
 The backend will soon load the model using:
-
 from_pretrained("ClayMark/sentiment-analysis-v2")
 
 ## Online Deployment
 🔄 Frontend: Vercel
-⚙️ Backend: Railway (But model is hosted in huggingface due to large size)
+⚙️ Backend: Railway (But model is hosted in Huggingface due to large size)
 
 ## Try it Online:
 - Deployed on Vercel: [`McKlay/sentiment-analysis-v2`](https://sentiment-analysis-v2.vercel.app/)
