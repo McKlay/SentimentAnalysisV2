@@ -4,38 +4,37 @@ from pydantic import BaseModel
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 import pickle
-import os
 from torch.nn import functional as F
 from huggingface_hub import hf_hub_download
 
 # Initialize FastAPI
 app = FastAPI()
 
-# Allow frontend to access backend
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://sentiment-analysis-v2.vercel.app"
-]
+# ✅ Allow any *.vercel.app subdomain + localhost (for testing)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origin_regex=r"https://.*vercel\.app|http://localhost:3000|http://127.0.0.1:3000",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# ✅ Clean up 404 logs from Render's health checks
+@app.get("/")
+def read_root():
+    return {"status": "OK", "message": "Sentiment Analysis API is live"}
+
 # Set device (GPU if available)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Load tokenizer and model from Hugging Face Hub with model.safetensors
+# Load tokenizer and model from Hugging Face Hub
 MODEL_NAME = "McKlay/sentiment-analysis-v2"
 tokenizer = BertTokenizer.from_pretrained(MODEL_NAME)
 model = BertForSequenceClassification.from_pretrained(MODEL_NAME)
 model.to(device)
 model.eval()
 
-# Load label encoder (e.g. ["Negative", "Neutral", "Positive"])
+# Load label encoder (e.g., ["Negative", "Neutral", "Positive"])
 encoder_path = hf_hub_download(repo_id=MODEL_NAME, filename="label_encoder.pkl")
 with open(encoder_path, "rb") as f:
     label_encoder = pickle.load(f)
@@ -44,7 +43,7 @@ with open(encoder_path, "rb") as f:
 class SentimentRequest(BaseModel):
     text: str
 
-# Endpoint: /predict
+# Inference endpoint
 @app.post("/predict")
 def predict_sentiment(request: SentimentRequest):
     text = request.text
@@ -61,5 +60,5 @@ def predict_sentiment(request: SentimentRequest):
     return {
         "text": text,
         "sentiment": sentiment,
-        "confidence_score": round(confidence * 100, 2)  # e.g. 92.45
+        "confidence_score": round(confidence * 100, 2)
     }
